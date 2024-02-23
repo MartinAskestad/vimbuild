@@ -8,14 +8,12 @@ jobs:
     name: Build vim
     runs-on: windows-latest
     steps:
-      - uses: msys2/setup-msys2@v2
-        with:
-          update: true
-          msystem: mingw64
-          pacboy: 'base-devel: toolchain:x'
       - uses: actions/checkout@v4
         with:
           repository: vim/vim
-      - run: make -f Make_ming.mak
+      - uses: ilammy/msvc-dev-cmd@1.13.0
+      - run: |
+          nmake -f Make_mvc.mak
         working-directory: src
-        shell: msys2 {0}
+      - run: dir /s *.exe
+        shell: cmd
