@@ -12,11 +12,15 @@ jobs:
         with:
           repository: vim/vim
         name: Checkout Vim
+      - run: |
+          curl -L https://sourceforge.net/projects/luabinaries/files/5.4.2/Windows%20Libraries/Dynamic/lua-5.4.2_Win64_dllw6_lib.zip/download lua.zip
+          Expand-Archive lua.zip
+        name: Download and unzip lua
       - name: Enable Developer Command Prompt
         uses: ilammy/msvc-dev-cmd@v1.13.0
       - run: |
-          nmake -f Make_mvc.mak FEATURES=TINY
-          nmake -f Make_mvc.mak FEATURES=TINY GUI=yes
+          nmake -f Make_mvc.mak FEATURES=TINY MOUSE=no SOUND=no LUA=..\lua DYNAMIC_LUA=yes LUA_VER=54
+          nmake -f Make_mvc.mak FEATURES=TINY GUI=yes DIRECTX=no MOUSE=no SOUND=no LUA=..\lua DYNAMIC_LUA=yes LUA_VER=54
         working-directory: src
         name: Compile Vim
       - run: |
@@ -24,6 +28,7 @@ jobs:
           copy src\*.exe vim91
           copy src\tee\tee.exe vim91
           copy src\xxd\xxd.exe vim91
+          copy lua\lua54.dll vim91
         shell: cmd
         name: Package Vim
       - uses: actions/upload-artifact@v4
