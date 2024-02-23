@@ -20,12 +20,10 @@ jobs:
         working-directory: src
         name: Compile Vim
       - run: |
-          mkdir vim91
-          copy runtime\* vim91
-          xcopy /s runtime\* vim91
-          copy src\*.exe vim90
-          copy src\tee\tee.exe vim90
-          copy src\xxd\xxd.exe vim90
+          mv runtime vim91
+          copy src\*.exe vim91
+          copy src\tee\tee.exe vim91
+          copy src\xxd\xxd.exe vim91
         shell: cmd
         name: Package Vim
       - uses: actions/upload-artifact@v4
