@@ -20,8 +20,8 @@ jobs:
       - name: Enable Developer Command Prompt
         uses: ilammy/msvc-dev-cmd@v1.13.0
       - run: |
-          nmake -f Make_mvc.mak FEATURES=TINY MOUSE=no SOUND=no LUA=%GITHUB_WORKSPACE%\lua DYNAMIC_LUA=yes LUA_VER=54
-          nmake -f Make_mvc.mak FEATURES=TINY GUI=yes DIRECTX=no MOUSE=no SOUND=no LUA=%GITHUB_WORKSPACE%\lua DYNAMIC_LUA=yes LUA_VER=54
+          nmake -f Make_mvc.mak FEATURES=TINY MOUSE=no SOUND=no LUA={{GITHUB_WORKSPACE}}\lua DYNAMIC_LUA=yes LUA_VER=54
+          nmake -f Make_mvc.mak FEATURES=TINY MOUSE=no SOUND=no LUA={{GITHUB_WORKSPACE}}\lua DYNAMIC_LUA=yes LUA_VER=54 GUI=yes DIRECTX=no 
         working-directory: src
         name: Compile Vim
       - run: |
