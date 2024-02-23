@@ -13,7 +13,7 @@ jobs:
           repository: vim/vim
         name: Checkout Vim
       - run: |
-          curl -L https://sourceforge.net/projects/luabinaries/files/5.4.2/Windows%20Libraries/Dynamic/lua-5.4.2_Win64_dllw6_lib.zip/download -o lua.zip
+          curl https://sourceforge.net/projects/luabinaries/files/5.4.2/Windows%20Libraries/Dynamic/lua-5.4.2_Win64_dllw6_lib.zip/download -o lua.zip
           Expand-Archive lua.zip
         shell: powershell
         name: Download and unzip lua
