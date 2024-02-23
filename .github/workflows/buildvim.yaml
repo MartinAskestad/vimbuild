@@ -11,12 +11,11 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: vim/vim
-      - run: dir /s *.exe
-        shell: cmd
       - name: Enable Developer Command Prompt
         uses: ilammy/msvc-dev-cmd@v1.13.0
       - run: |
           nmake -f Make_mvc.mak FEATURES=tiny
         working-directory: src
+        name: compile vim
       - run: dir /s *.exe
         shell: cmd
