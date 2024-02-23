@@ -11,11 +11,26 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: vim/vim
+        name: Checkout Vim
       - name: Enable Developer Command Prompt
         uses: ilammy/msvc-dev-cmd@v1.13.0
       - run: |
           nmake -f Make_mvc.mak FEATURES=tiny
+          nmake -f Make_mvc.mak FEATURES=tiny GUI=yes
         working-directory: src
-        name: compile vim
-      - run: dir /s *.exe
+        name: Compile Vim
+      - run: |
+          mkdir vim91
+          copy runtime\* vim91
+          xcopy /s runtime\* vim91
+          copy src\*.exe vim90
+          copy src\tee\tee.exe vim90
+          copy src\xxd\xxd.exe vim90
         shell: cmd
+        name: Package Vim
+      - uses: actions/upload-artifact@v4
+        with:
+          path: vim91
+          name: vim
+        name: Create artifact
+        
