@@ -15,6 +15,4 @@ jobs:
           pacboy: 'base-devel: toolchain:x'
       - uses: actions/checkout@v4
         with:
-          repository: http://github.com/vim/vim.git
-          
-    
+          repository: vim/vim
