@@ -15,8 +15,8 @@ jobs:
       - name: Enable Developer Command Prompt
         uses: ilammy/msvc-dev-cmd@v1.13.0
       - run: |
-          nmake -f Make_mvc.mak FEATURES=tiny
-          nmake -f Make_mvc.mak FEATURES=tiny GUI=yes
+          nmake -f Make_mvc.mak FEATURES=TINY
+          nmake -f Make_mvc.mak FEATURES=TINY GUI=yes
         working-directory: src
         name: Compile Vim
       - run: |
