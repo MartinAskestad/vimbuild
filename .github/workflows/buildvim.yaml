@@ -16,3 +16,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: vim/vim
+      - run: make -f Make_ming.mak
+        working-directory: ./vim/src
+        shell: msys2 {0}
