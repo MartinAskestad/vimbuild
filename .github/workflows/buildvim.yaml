@@ -15,13 +15,13 @@ jobs:
       - run: |
           Invoke-WebRequest -UserAgent "Wget" -Uri https://sourceforge.net/projects/luabinaries/files/5.4.2/Windows%20Libraries/Dynamic/lua-5.4.2_Win64_dllw6_lib.zip/download -OutFile lua.zip
           Expand-Archive lua.zip
-          Get-ChildItem lua -Recurse
         shell: powershell
         name: Download and unzip lua
       - name: Enable Developer Command Prompt
         uses: ilammy/msvc-dev-cmd@v1.13.0
       - run: |
-          nmake -f Make_mvc.mak FEATURES=NORMAL ICONV=no MOUSE=no SOUND=no LUA=$ENV:GITHUB_WORKSPACE\lua DYNAMIC_LUA=yes LUA_VER=54 MODIFIED_BY=Martin 
+          nmake -f Make_mvc.mak FEATURES=NORMAL ICONV=no GETTEXT=no SOUND=no LUA=$ENV:GITHUB_WORKSPACE\lua DYNAMIC_LUA=yes LUA_VER=54 MODIFIED_BY=Martin 
+          nmake -f Make_mvc.mak FEATURES=NORMAL ICONV=no GETTEXT=no SOUND=no LUA=$ENV:GITHUB_WORKSPACE\lua DYNAMIC_LUA=yes LUA_VER=54 MODIFIED_BY=Martin GUI=yes DIRECTX=no
         working-directory: src
         name: Compile Vim
       - run: |
