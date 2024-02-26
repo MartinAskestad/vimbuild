@@ -1,6 +1,9 @@
 name: Build vim
 
 on:
+  push:
+    branches:
+      - master
   workflow_dispatch:
 
 jobs:
@@ -21,7 +24,7 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1.13.0
       - run: |
           nmake -f Make_mvc.mak FEATURES=NORMAL ICONV=no GETTEXT=no SOUND=no LUA=$ENV:GITHUB_WORKSPACE\lua DYNAMIC_LUA=yes LUA_VER=54 MODIFIED_BY=Martin 
-          nmake -f Make_mvc.mak FEATURES=NORMAL ICONV=no GETTEXT=no SOUND=no LUA=$ENV:GITHUB_WORKSPACE\lua DYNAMIC_LUA=yes LUA_VER=54 MODIFIED_BY=Martin GUI=yes DIRECTX=no
+          nmake -f Make_mvc.mak FEATURES=NORMAL TERMINAL=yes ICONV=no GETTEXT=no SOUND=no LUA=$ENV:GITHUB_WORKSPACE\lua DYNAMIC_LUA=yes LUA_VER=54 MODIFIED_BY=Martin GUI=yes DIRECTX=no
         working-directory: src
         name: Compile Vim
       - run: |
